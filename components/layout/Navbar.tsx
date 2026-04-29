@@ -1,3 +1,4 @@
+// Navbar + SiteFooter combined
 "use client";
 
 import { useState, useEffect } from "react";
@@ -5,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { navLinks, personalInfo } from "@/lib/data";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Heart, Github, Linkedin, Twitter, Mail, ArrowUp } from "lucide-react";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -156,5 +157,105 @@ export function Navbar() {
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+// ─── SiteFooter ───────────────────────────────────────────────────────────────
+
+export function SiteFooter() {
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const footerLinks = [
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#projects" },
+    { label: "Contact", href: "#contact" },
+  ];
+
+  const socialLinks = [
+    { href: personalInfo.github, icon: Github, label: "GitHub" },
+    { href: personalInfo.linkedin, icon: Linkedin, label: "LinkedIn" },
+    { href: personalInfo.twitter, icon: Twitter, label: "Twitter" },
+    { href: "mailto:" + personalInfo.email, icon: Mail, label: "Email" },
+  ];
+
+  const handleFooterNav = (href: string) => {
+    const id = href.replace("#", "");
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <footer className="bg-white dark:bg-[#1e293b] border-t border-slate-200 dark:border-slate-700/50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid sm:grid-cols-3 gap-8 mb-10">
+          <div className="sm:col-span-1">
+            <div className="font-bold text-xl text-slate-900 dark:text-white mb-3">
+              <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent">
+                {personalInfo.name.split(" ")[0]}
+              </span>
+              <span className="text-slate-400">.</span>
+            </div>
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-xs">
+              {personalInfo.title} based in {personalInfo.location}. Building the web, one component at a time.
+            </p>
+          </div>
+          <div>
+            <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">Navigation</h4>
+            <ul className="space-y-2">
+              {footerLinks.map((link) => (
+                <li key={link.href}>
+                  <button
+                    onClick={() => handleFooterNav(link.href)}
+                    className="text-sm text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-4">Connect</h4>
+            <div className="flex flex-wrap gap-2">
+              {socialLinks.map(({ href, icon: Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-all duration-200"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-4">
+              <a href={"mailto:" + personalInfo.email} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                {personalInfo.email}
+              </a>
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-slate-100 dark:border-slate-700/50">
+          <p className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+            Built with
+            <Heart size={13} className="text-red-500 fill-red-500" />
+            using Next.js, TypeScript &amp; Tailwind CSS
+          </p>
+          <p className="text-sm text-slate-400 dark:text-slate-500">
+            &copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
+          </p>
+          <button
+            onClick={scrollToTop}
+            aria-label="Back to top"
+            className="w-9 h-9 flex items-center justify-center rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-colors shadow-lg shadow-indigo-500/20"
+          >
+            <ArrowUp size={16} />
+          </button>
+        </div>
+      </div>
+    </footer>
   );
 }

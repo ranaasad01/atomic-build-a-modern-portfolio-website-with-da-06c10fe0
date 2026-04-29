@@ -1,3 +1,4 @@
+// Skills + Projects + Contact sections combined
 "use client";
 
 import { motion } from "framer-motion";
@@ -41,7 +42,7 @@ export function Skills() {
       <div className="container-max">
         <ScrollReveal className="text-center mb-16">
           <span className="inline-block px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-sm font-semibold mb-4 border border-indigo-100 dark:border-indigo-800">
-            Skills
+            Skillsasdasdasd
           </span>
           <h2 className="section-title">
             My{" "}

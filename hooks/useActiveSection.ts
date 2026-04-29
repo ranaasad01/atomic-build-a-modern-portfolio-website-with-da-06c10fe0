@@ -1,3 +1,4 @@
+// useActiveSection hook
 "use client";
 
 import { useState, useEffect } from "react";
