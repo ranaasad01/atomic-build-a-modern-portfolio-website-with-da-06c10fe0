@@ -76,7 +76,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          {personalInfo.tagline} Turning complex problems into elegant, user-friendly solutions.
+          My name is asad and I&apos;m an AI Engineer
         </motion.p>
 
         {/* CTA Buttons */}
