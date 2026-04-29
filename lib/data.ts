@@ -1,5 +1,4 @@
-export const personalInfo = {
-  name: "Alex Morgan",
+export const personalInfo = {   name: "ASad Rana",
   title: "Full-Stack Developer",
   tagline: "I build beautiful, performant web experiences.",
   bio: `I'm a passionate full-stack developer with 5+ years of experience crafting modern web applications. 
